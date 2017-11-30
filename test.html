@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <script src="js/Source/lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  <script type="text/javascript">
+  
+     var b={
+        a:function cc1(){
+        var t_="2你";
+          alert(t_);
+        },b:function cc2(){
+          var t_="1d我";
+          alert(t_);
+        }
+     };
+     function test(fun){
+        fun();
+     }
+     var dd;
+     function say(name1){
+       // dd+id =name1;
+        //$("#"+id).find("#tt input").click()
+       // $("#"+id).find("#tt").html('<input type="button" value="测试'+id+'" onclick="test('+name1+');">');
+       // $("#"+id).find("#tt1").html('<input type="button" value="1测试 '+id+'" onclick="test(b.b)">');
+       var funName=name1;
+       if(typeof name1 =="function"){
+          funName=name1.name;
+       }
+        $("body").append('<input type="button" value="测试" onclick="test('+funName+');">');
+     }
+     $(function(){
+     say('b.b');
+     say('b.a');
+     });
+  </script>
+  <body>
+  </body>
+</html>

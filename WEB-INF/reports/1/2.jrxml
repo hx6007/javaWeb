@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="120d4245-6fb6-483d-ba2c-c5aa4633673e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select  * from e_Category e
+LEFT JOIN e_CategoryMore ec on (e.category_id=ec.lkey and ec.lId='1')
+limit 10]]>
+	</queryString>
+	<field name="category_id" class="java.lang.String">
+		<fieldDescription><![CDATA[自增id号]]></fieldDescription>
+	</field>
+	<field name="category_image" class="java.lang.String">
+		<fieldDescription><![CDATA[商品分类图标]]></fieldDescription>
+	</field>
+	<field name="category_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[商品分类描述]]></fieldDescription>
+	</field>
+	<field name="sort_order" class="java.lang.Integer">
+		<fieldDescription><![CDATA[该分类在页面显示的顺序,数字越大顺序越靠后,同数字,id在前的先显示]]></fieldDescription>
+	</field>
+	<field name="is_show" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[是否在前台页面显示1显示;0不显示]]></fieldDescription>
+	</field>
+	<field name="row_id" class="java.lang.String">
+		<fieldDescription><![CDATA[自身的节点ID]]></fieldDescription>
+	</field>
+	<field name="parent_row_id" class="java.lang.String">
+		<fieldDescription><![CDATA[上级节点ID]]></fieldDescription>
+	</field>
+	<field name="tree_row_id" class="java.lang.String">
+		<fieldDescription><![CDATA[树节点ID（包含当前节点及其所有上级节点的字符串）]]></fieldDescription>
+	</field>
+	<field name="add_time" class="java.lang.Integer">
+		<fieldDescription><![CDATA[创建时间]]></fieldDescription>
+	</field>
+	<field name="lId" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lkey" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="category_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="measure_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="209" y="26" width="100" height="20" uuid="7e7b57bf-96b1-4f10-a0b7-a5c5375228a5"/>
+				<text><![CDATA[测试]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20" uuid="a6b16def-2acc-4a3a-951b-01e3f604bc14"/>
+				<text><![CDATA[自增id号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="3" width="100" height="20" uuid="55adbafa-8594-4867-ab77-95db88315db5"/>
+				<text><![CDATA[category_name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="20" uuid="b239f6ab-3deb-45c5-ba28-5cc9c4adaa27"/>
+				<textFieldExpression><![CDATA[$F{category_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="b1c5ff4b-dc00-4031-b6e7-0c93c0f784f8"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{category_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
+

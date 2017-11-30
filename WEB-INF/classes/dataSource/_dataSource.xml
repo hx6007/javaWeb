@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">  
+<beans> 
+  <bean id="dataSourceProperties" class="com.pb.PropertiesEncrypt">  
+        <property name="properties">  
+            <props>  
+                <prop key="user">EdPqhPqAhPqAb0PdCPqf0PCfPqfEPqAACPGGPfbPqAbCPhEPqdGPQhPqdCPqA0fPQEPdGPA0APAA0PCbPqAhPEdPqfEPEfPChPqb0PqAAGPAb0PCCPqA00pengbei</prop>  
+                <prop key="password">qCPhAPfEPqbbPqfPqhAPGbPqdPqAhPA0hPGhPAfPqC0PqfGPqbCPGCPqQfPqAbGPqAAEPqAAPqAbhPE0PqAPqAhPqhEPAbdPAbGPAAAPGAPqA0PhfPA0Gpengbei</prop>  
+            </props>  
+        </property>  
+   </bean> 
+  <bean id="_dataSource_ppk" class="com.pb.multiData.SshGo">
+         <property name="openSSH" value="0" />
+  	     <property name="properties" ref="dataSourceProperties"/> 
+  	     <property name="host" value="119.29.59.42" />
+  	     <property name="port" value="22" />
+  	     <property name="lport" value="3306" />
+  	     <property name="fport" value="3306" />
+  	     <property name="ppk" value="D:\\tx.ppk" />
+  </bean> 
+   <bean id="_dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">  
+       	<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://58.252.69.153:3307/manage?zeroDateTimeBehavior=convertToNull" />
+		<property name="initialPoolSize" value="10"/>
+		<property name="minPoolSize" value="10"/>
+		<property name="maxPoolSize" value="30"/>
+		<property name="acquireIncrement" value="5"/>
+		<property name="maxIdleTime" value="1800"/>
+		<property name="idleConnectionTestPeriod" value="1800"/>
+		<property name="maxStatements" value="0"/>
+		<property name="properties" ref="dataSourceProperties"/> 
+  	</bean>
+</beans>

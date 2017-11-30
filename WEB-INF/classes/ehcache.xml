@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">  
+	<diskStore path="user.home"/>
+	<!-- 定义默认的缓存区，如果在未指定缓存区时，默认使用该缓存区 -->
+	<defaultCache maxElementsInMemory="500" eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="LFU"/>
+	<!-- 定义名字为"dao.select"的缓存区 -->
+	<cache name="select" 
+	maxElementsInMemory="500" 
+	eternal="false" 
+	timeToIdleSeconds="900"
+	timeToLiveSeconds="1800"
+	overflowToDisk="true" 
+	memoryStoreEvictionPolicy="LFU"/>
+</ehcache>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">  
+<beans> 
+  <bean id="${dbConfg}Properties" class="com.pb.PropertiesEncrypt">  
+        <property name="properties">  
+            <props>  
+                <prop key="user">${dbUser}</prop>  
+                <prop key="password">${dbPwd}</prop>  
+            </props>  
+        </property>  
+   </bean> 
+  <bean id="${dbConfg}_ppk" class="com.pb.multiData.SshGo">
+         <property name="openSSH" value="${openSSH}" />
+  	     <property name="properties" ref="${dbConfg}Properties"/> 
+  	     <property name="host" value="${host}" />
+  	     <property name="port" value="${port}" />
+  	     <property name="lport" value="${lport}" />
+  	     <property name="fport" value="${fport}" />
+  	     <property name="ppk" value="${ppk}" />
+  </bean>  
+   <bean id="${dbConfg}" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">  
+       	<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://${dbIp}:${dbPort}/${dbName}?zeroDateTimeBehavior=convertToNull" />
+		<property name="initialPoolSize" value="10"/>
+		<property name="minPoolSize" value="10"/>
+		<property name="maxPoolSize" value="30"/>
+		<property name="acquireIncrement" value="5"/>
+		<property name="maxIdleTime" value="1800"/>
+		<property name="idleConnectionTestPeriod" value="1800"/>
+		<property name="maxStatements" value="0"/>
+		<property name="properties" ref="${dbConfg}Properties"/> 
+  	</bean> 
+</beans>

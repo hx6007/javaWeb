@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<title>退出登录</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script src="js/Source/lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+<script src="js_/manage.js" type="text/javascript"></script>  
+<script src="js/Source/lib/jquery.cookie.js"></script>
+<script src="js/Source/lib/json2.js"></script>
+<script type="text/javascript">
+<!--
+var tiketMap=JSON2.parse($.cookie('ticketMap'));
+$pb.exit(tiketMap,function(){
+    theExit(parent);
+});
+function theExit(w_){
+  var p_=w_.parent;
+  if(p_.location.href==w_.location.href){
+     w_.refBoo=false;
+     var company=$.cookie('company');
+     var add=(company)?"?company="+company:"";
+	 w_.location.href=itemPath+"login.html";
+  }else{
+     theExit(p_);
+  }
+}
+//-->
+</script>
+</head>  
+<body>
+</body>
+</html>

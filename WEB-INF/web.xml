@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>亿聚管理</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+<!--由Sprng载入的Log4j配置文件位置-->
+<context-param>
+<param-name>log4jConfigLocation</param-name>
+<param-value>classpath:/log4j.xml</param-value>
+</context-param>
+
+<!--Spring默认刷新Log4j配置文件的间隔,单位为毫秒-->
+<context-param>
+<param-name>log4jRefreshInterval</param-name>
+<param-value>60000</param-value>
+</context-param>
+
+<!--Spring log4j Config loader-->
+<listener>
+<listener-class>
+org.springframework.web.util.Log4jConfigListener</listener-class>
+</listener>
+	<!-- end print -->	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:dataSource/*.xml,classpath:spring/*.xml</param-value>
+	</context-param>
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+		<!-- 验证码servlet -->
+	<servlet>
+		<servlet-name>imageCode</servlet-name>
+		<servlet-class>com.pb.servlet.ImageCode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>imageCode</servlet-name>
+		<url-pattern>/imageCode</url-pattern>
+	</servlet-mapping>
+	<!-- begin print -->
+	<servlet>
+		<servlet-name>PdfServlet</servlet-name>
+		<servlet-class>com.pb.servlet.PdfServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PdfServlet</servlet-name>
+		<url-pattern>/PdfServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RtfServlet</servlet-name>
+		<servlet-class>com.pb.servlet.RtfServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RtfServlet</servlet-name>
+		<url-pattern>/RtfServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HtmlServlet</servlet-name>
+		<servlet-class>com.pb.servlet.HtmlServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HtmlServlet</servlet-name>
+		<url-pattern>/HtmlServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CsvServlet</servlet-name>
+		<servlet-class>com.pb.servlet.CsvServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CsvServlet</servlet-name>
+		<url-pattern>/CsvServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ImageServlet</servlet-name>
+		<servlet-class>com.pb.servlet.ImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageServlet</servlet-name>
+		<url-pattern>/ImageServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>OdtServlet</servlet-name>
+		<servlet-class>com.pb.servlet.OdtServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OdtServlet</servlet-name>
+		<url-pattern>/OdtServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>XlsServlet</servlet-name>
+		<servlet-class>com.pb.servlet.XlsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>XlsServlet</servlet-name>
+		<url-pattern>/XlsServlet</url-pattern>
+	</servlet-mapping>
+   <servlet>
+		<servlet-name>XmlServlet</servlet-name>
+		<servlet-class>com.pb.servlet.XmlServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>XmlServlet</servlet-name>
+		<url-pattern>/XmlServlet</url-pattern>
+	</servlet-mapping>
+	<!--如果不定义webAppRootKey参数，那么webAppRootKey就是缺省的"webapp.root"-->
+<context-param>
+<param-name>webAppRootKey</param-name>
+<param-value>managePath</param-value>
+</context-param>
+
+
+	<!-- -->
+	<filter>
+		<filter-name>ticket</filter-name>
+		<filter-class>com.pb.filter.TicketCheck</filter-class>
+		<init-param>
+			<param-name>unchecked</param-name>
+			<!-- 配置不需要ticket检查的 权限放开url -->
+			<param-value>
+        {"not_ticket":[
+         "/user/userinfo.do?m=login",
+         "/file.do",
+         "/qiniutoken.do",
+         "/imgUrl.do"
+        ]}
+        </param-value>
+		</init-param>
+		<init-param>
+		<param-name>itemURL</param-name>
+		<param-value>http://localhost:8080/ezg/</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ticket</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ticket</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<!--// -->
+	<servlet>
+		<servlet-name>manage</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>manage</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.jsp</location>
+    </error-page>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+</web-app>
